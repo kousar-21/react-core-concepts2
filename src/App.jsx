@@ -7,22 +7,35 @@ import ApiReact from './apiReact'
 import Users from './apiReact'
 import { Suspense } from 'react'
 import Friends from './friendsApi'
+import Posts from './posts'
 
-// shortcurt way to use fetch
-const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users")
-.then(res => res.json())
 
-// Another way to use fetch using Async And Await
-const fetchFriends = async() => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users")
-  return res.json();
-}
+// shortcurt way to use fetch  (demo = 1)
+// const fetchUsers = fetch("https://jsonplaceholder.typicode.com/users")
+// .then(res => res.json())
+
+// Another way to use fetch using Async And Await   (demo = 2)
+// const fetchFriends = async() => {
+//   const res = await fetch("https://jsonplaceholder.typicode.com/users")
+//   return res.json();
+// }
+
+
+// using Async And Await for fetch Posts (demo = 3)
+  const fetchPosts = async() => {
+    const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+    return response.json();
+  }
 
 
 function App() {
 
-  // below line for api
-  const fetchPromise = fetchFriends();
+  // below line for using Async and Await for post part (demo = 3);
+  const promisePost = fetchPosts();
+
+
+  // below line for api using Async and await For Post part  (demo = 2);
+  // const fetchPromise = fetchFriends();
 
 
   function handleClick() {
@@ -42,15 +55,26 @@ function App() {
     <>
 
       <h3>Vite + React</h3>
-      <Suspense fallback={<p>The user is loading</p>}>
-        <Users fetchUsers={fetchUsers}></Users>
+
+      {/* fetch use demo = 3 */}
+      <Suspense fallback={<p>Please Wait...Post Are Loading</p>}>
+          <Posts promisePost={promisePost} ></Posts>
       </Suspense>
 
-      <Suspense fallback={<h2>The Friends List Is Loading</h2>}>
+
+      {/* fetch use demo =1 */}
+
+      {/* <Suspense fallback={<p>The user is loading</p>}>
+        <Users fetchUsers={fetchUsers}></Users>
+      </Suspense> */}
+
+
+        {/* fetch use demo = 2 */}
+      {/* <Suspense fallback={<h2>The Friends List Is Loading</h2>}>
 
       <Friends fetchPromise= {fetchPromise}></Friends>
 
-      </Suspense>
+      </Suspense> */}
 
       <Batsman></Batsman>
       <Counter></Counter>
