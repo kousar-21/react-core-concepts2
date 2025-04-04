@@ -8,6 +8,7 @@ import Users from './apiReact'
 import { Suspense } from 'react'
 import Friends from './friendsApi'
 import Posts from './posts'
+import Players from './players'
 
 
 // shortcurt way to use fetch  (demo = 1)
@@ -22,16 +23,16 @@ import Posts from './posts'
 
 
 // using Async And Await for fetch Posts (demo = 3)
-  const fetchPosts = async() => {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts")
-    return response.json();
-  }
+  // const fetchPosts = async() => {
+  //   const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+  //   return response.json();
+  // }
 
 
 function App() {
 
   // below line for using Async and Await for post part (demo = 3);
-  const promisePost = fetchPosts();
+  // const promisePost = fetchPosts();
 
 
   // below line for api using Async and await For Post part  (demo = 2);
@@ -56,10 +57,12 @@ function App() {
 
       <h3>Vite + React</h3>
 
+      <Players></Players>
+
       {/* fetch use demo = 3 */}
-      <Suspense fallback={<p>Please Wait...Post Are Loading</p>}>
+      {/* <Suspense fallback={<p>Please Wait...Post Are Loading</p>}>
           <Posts promisePost={promisePost} ></Posts>
-      </Suspense>
+      </Suspense> */}
 
 
       {/* fetch use demo =1 */}
